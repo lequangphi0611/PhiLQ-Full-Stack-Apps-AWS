@@ -19,7 +19,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/filteredimage', async (req, res) => {
-  const imageUrl = req.query.imageUrl;
+  const imageUrl = req.query.image_url;
 
   if (isBlank(imageUrl)) {
     res
