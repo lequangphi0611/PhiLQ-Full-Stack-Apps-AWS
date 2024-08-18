@@ -1,4 +1,5 @@
 import fs from "fs";
+import axios from 'axios';
 import Jimp from "jimp";
 
 
@@ -14,7 +15,9 @@ import Jimp from "jimp";
     let photo;
 
     try {
-      photo = await Jimp.read(inputURL);
+      const response = await axios.get(inputURL, { responseType: 'arraybuffer' });
+      const buffer = Buffer.from(response.data, 'binary');
+      photo = await Jimp.read(buffer);
     } catch(err) {
       console.error(`Failed to read the image from URL = "${inputURL}"`)
       reject(err);
